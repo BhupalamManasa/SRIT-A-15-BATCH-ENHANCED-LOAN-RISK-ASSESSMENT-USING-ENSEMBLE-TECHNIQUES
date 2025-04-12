@@ -1,0 +1,152 @@
+<!doctype html>
+<!--[if IE 9]> <html class="no-js ie9 fixed-layout" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js " lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Site Meta -->
+    <title>Credit Risk</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+
+	<!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet"> 
+	
+    <!-- Custom & Default Styles -->
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/carousel.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+	<!--[if lt IE 9]>
+		<script src="/static/js/vendor/html5shiv.min.js"></script>
+		<script src="/static/js/vendor/respond.min.js"></script>
+	<![endif]-->
+    <style>
+        body{
+            background-image: url(/static/upload/home-Photoroom.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .header{
+            padding-top: 10px;
+            background-color: black;
+        }
+        .view{
+        padding-left: 500px;
+        color: azure;
+      }
+    </style>
+</head>
+<body>  
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <img class="preloader" src="/static/images/loader.gif" alt="">
+    </div><!-- end loader -->
+    <!-- END LOADER -->
+
+    <div id="wrapper">
+        <!-- BEGIN # MODAL LOGIN -->
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Begin # DIV Form -->
+                    <div id="div-forms">
+                        <form id="login-form">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span class="flaticon-add" aria-hidden="true"></span>
+                            </button>
+                            <div class="modal-body">
+                                <input class="form-control" type="text" placeholder="What you are looking for?" required>
+                            </div>
+                        </form><!-- End # Login Form -->
+                    </div><!-- End # DIV Form -->
+                </div>
+            </div>
+        </div>
+        <!-- END # MODAL LOGIN -->
+
+        <header class="header">
+            <div class="container">
+                <nav class="navbar navbar-default yamm">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="logo-normal">
+                            <a class="navbar-brand" href="{% url 'home' %}"><h3 style="text-decoration: none; color: azure; padding-bottom: 20px; text-align: center;"><b>CREDIT RISK</b></h3></a>
+                        </div>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                          
+                            <li><a href="{% url 'view' %}">View</a></li>
+
+                            <li><a href="{% url 'model' %}">Model Train</a></li>
+                            
+                            <li><a href="{% url 'predict' %}">Prediction</a></li>
+                            
+                            <li><a href="{% url 'custom_logout' %}">Logout</a></li>
+                            
+                        </ul>
+                    </div>
+                </nav><!-- end navbar -->
+            </div><!-- end container -->
+        </header>
+        <section>
+            <div>
+                <div>
+                    <h1 style="color: azure; text-align: center;font-size: 35px; padding-top: 40px;"><b>Dataset View</b></h1>
+                </div>
+                <div class="view">
+                    <form class="row g-3" action="{% url 'view' %}" method="post">
+                    {% csrf_token %}
+                    <h2 style="color: azure;">Enter  a Number How Much Data view</h2>
+                    <input type="number" name="num" id="form3Example4cg" class="form-control" placeholder="NUmber" style="width:370px; height:55px"/>
+                    <br>
+                    <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success" style="background-color:mediumseagreen; text-align: center;">SUBMIT</button>
+                    </div>
+                    </div>              
+                    </form>
+                    <br>
+                    <div class="bg-text">
+                    <h4 style="color:white">{{table|safe}}</h4>
+                </div>
+                   
+            </div>
+        </section>
+
+        
+    </div><!-- end wrapper -->
+
+    <!-- jQuery Files -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/carousel.js"></script>
+    <script src="/static/js/animate.js"></script>
+    <script src="/static/js/custom.js"></script>
+    <!-- VIDEO BG PLUGINS -->
+    <script src="/static/js/videobg.js"></script>
+
+</body>
+</html>

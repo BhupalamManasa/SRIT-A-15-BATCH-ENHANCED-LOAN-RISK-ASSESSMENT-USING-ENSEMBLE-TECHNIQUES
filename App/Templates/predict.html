@@ -1,0 +1,312 @@
+<!doctype html>
+<!--[if IE 9]> <html class="no-js ie9 fixed-layout" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js " lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Site Meta -->
+    <title>Credit Risk</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+
+	<!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet"> 
+	
+    <!-- Custom & Default Styles -->
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/carousel.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+	<!--[if lt IE 9]>
+		<script src="/static/js/vendor/html5shiv.min.js"></script>
+		<script src="/static/js/vendor/respond.min.js"></script>
+	<![endif]-->
+    <style>
+        body{
+            background-image: url(/static/upload/home-Photoroom.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .header{
+            padding-top: 10px;
+            background-color: black;
+        }
+        button {
+        width: 100%;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        }
+
+        button:hover {
+        background-color: #0056b3;
+        }
+        .form-group {
+        margin-bottom: 15px;
+        }
+        .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: #f9f9f9;
+        transition: border 0.3s;
+        color: black;
+        }
+        .form-group input:focus {
+        border-color: #007bff;
+        background-color: #ffffff;
+        outline: none;
+        }
+        .pred{
+            padding-top: 100px;
+            padding-left: 300px;
+            padding-right: 300px;
+            padding-bottom: 20px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+            transition: border 0.3s;
+            color: black;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #007bff;
+            background-color: #ffffff;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>  
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <img class="preloader" src="/static/images/loader.gif" alt="">
+    </div><!-- end loader -->
+    <!-- END LOADER -->
+
+    <div id="wrapper">
+        <!-- BEGIN # MODAL LOGIN -->
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Begin # DIV Form -->
+                    <div id="div-forms">
+                        <form id="login-form">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span class="flaticon-add" aria-hidden="true"></span>
+                            </button>
+                            <div class="modal-body">
+                                <input class="form-control" type="text" placeholder="What you are looking for?" required>
+                            </div>
+                        </form><!-- End # Login Form -->
+                    </div><!-- End # DIV Form -->
+                </div>
+            </div>
+        </div>
+        <!-- END # MODAL LOGIN -->
+
+        <header class="header">
+            <div class="container">
+                <nav class="navbar navbar-default yamm">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="logo-normal">
+                            <a class="navbar-brand" href="{% url 'home' %}"><h3 style="text-decoration: none; color: azure; padding-bottom: 20px; text-align: center;"><b>CREDIT RISK</b></h3></a>
+                        </div>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                          
+                            <li><a href="{% url 'view' %}">View</a></li>
+
+                            <li><a href="{% url 'model' %}">Model Train</a></li>
+                            
+                            <li><a href="{% url 'predict' %}">Prediction</a></li>
+                            
+                            <li><a href="{% url 'custom_logout' %}">Logout</a></li>
+                            
+                        </ul>
+                    </div>
+                </nav><!-- end navbar -->
+            </div><!-- end container -->
+        </header>
+        <section>
+            <div class="pred">
+                <center><h1><b>Prediction</b></h1></center>
+            <form action="{% url 'predict' %}" method="post">
+                {% if msg %}
+                    <center><h1 style="color: red;">Credit Risk Level is {{msg}}</h1></center>
+                    <h3>Description:</h3>
+                    <p>{{des}}</p>
+                {% endif %}
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text"  name="Age" placeholder="Enter your age" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Month" placeholder="Enter Month Number" required>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example" required>
+                        <option selected>Select the Occupation</option>
+                        <option value="0">Accountant</option>
+                        <option value="1">Architect</option>
+                        <option value="2">Developer</option>
+                        <option value="3">Doctor</option>
+                        <option value="4">Engineer</option>
+                        <option value="5">Entrepreneur</option>
+                        <option value="6">Journalist</option>
+                        <option value="7">Lawyer</option>
+                        <option value="8">Manager</option>
+                        <option value="9">Mechanic</option>
+                        <option value="10">Media_Manager</option>
+                        <option value="11">Musician</option>
+                        <option value="12">Scientist</option>
+                        <option value="13">Teacher</option>
+                        <option value="14">Writer</option>
+                      </select>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Annual_Income" placeholder="Enter your Annual Income" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Monthly_Inhand_Salary" placeholder="Enter your Monthly Inhand Salary" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Num_Bank_Accounts" placeholder="Enter your Number Bank Accounts" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Num_Credit_Card" placeholder="Enter your Num Credit Card" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Interest_Rate" placeholder="Enter your Interest Rate " required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Num_of_Loan" placeholder="Enter your Num of Loan  " required>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example"  required>
+                        <option selected>Select the type of loan</option>
+                        <option value="0">Auto Loan</option>
+                        <option value="1">Debt Consolidation Loan</option>
+                        <option value="2">Credit-Builder Loan</option>
+                        <option value="3">Home Equity Loan</option>
+                        <option value="4">Payday Loan</option>
+                        <option value="5">Personal Loan</option>
+                        <option value="6">Student Loan</option>
+                        <option value="7">Payday Loan</option>
+                        <option value="8">Mortgage Loan</option>
+                        <option value="9">Not Specified</option>
+                      </select>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Delay_from_due_date" placeholder="Enter your Delay from due date" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Num_of_Delayed_Payment" placeholder="Enter your Num_of_Delayed_Payment" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Changed_Credit_Limit" placeholder="Enter your Changed Credit Limit" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Num_Credit_Inquiries" placeholder="Enter yourNum Credit Inquiries" required>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example" required>
+                        <option selected>Select Credit Mix</option>
+                        <option value="0">Bad</option>
+                        <option value="1">Good</option>
+                        <option value="2">Standard</option>
+                      </select>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Outstanding_Debt" placeholder="Enter your Outstanding Debt" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Credit_Utilization_Ratio" placeholder="Enter your Credit_Utilization_Ratio" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Credit_History_Age" placeholder="Enter your Credit_History_Age" required>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Select the Payment of Min amount</option>
+                        <option value="1">No</option>
+                        <option value="2">Yes</option>
+                      </select>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Total_EMI_per_month" placeholder="Enter your Total_EMI_per_month" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Amount_invested_monthly" placeholder="Enter your Amount_invested_monthly" required>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Select Payment behaviour</option>
+                        <option value="1">High_spent_Large_value_payments</option>
+                        <option value="2">High_spent_Medium_value_payments</option>
+                        <option value="3">High_spent_Small_value_payments</option>
+                        <option value="4">Low_spent_Large_value_payments</option>
+                        <option value="5">Low_spent_Medium_value_payments</option>
+                        <option value="6">Low_spent_Small_value_payments</option>
+                      </select>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="Monthly_Balance" placeholder="Enter your Monthly_Balance" required>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            </div>
+        </section>
+
+        
+    </div><!-- end wrapper -->
+
+    <!-- jQuery Files -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/carousel.js"></script>
+    <script src="/static/js/animate.js"></script>
+    <script src="/static/js/custom.js"></script>
+    <!-- VIDEO BG PLUGINS -->
+    <script src="/static/js/videobg.js"></script>
+
+</body>
+</html>

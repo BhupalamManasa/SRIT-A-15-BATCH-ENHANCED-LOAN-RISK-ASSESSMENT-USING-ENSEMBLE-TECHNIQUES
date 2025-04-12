@@ -1,0 +1,232 @@
+<!doctype html>
+<!--[if IE 9]> <html class="no-js ie9 fixed-layout" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js " lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Site Meta -->
+    <title>Credit Risk</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+
+	<!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet"> 
+	
+    <!-- Custom & Default Styles -->
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/carousel.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+	<!--[if lt IE 9]>
+		<script src="/static/js/vendor/html5shiv.min.js"></script>
+		<script src="/static/js/vendor/respond.min.js"></script>
+	<![endif]-->
+    <style>
+        body{
+            background-image: url(/static/upload/bg1.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .header{
+            padding-top: 10px;
+            background-color: black;
+        }
+        .register{
+            padding-top: 100px;
+            padding-left: 500px;
+        }
+        .form-container {
+  /* background: #ffffff; */
+  padding: 20px 30px;
+  border-radius: 10px;
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Form title */
+.registration-form h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: black;
+  text-align: center;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  transition: border 0.3s;
+  color: black;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+    </style>
+</head>
+<body>  
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <img class="preloader" src="/static/images/loader.gif" alt="">
+    </div><!-- end loader -->
+    <!-- END LOADER -->
+
+    <div id="wrapper">
+        <!-- BEGIN # MODAL LOGIN -->
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Begin # DIV Form -->
+                    <div id="div-forms">
+                        <form id="login-form">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span class="flaticon-add" aria-hidden="true"></span>
+                            </button>
+                            <div class="modal-body">
+                                <input class="form-control" type="text" placeholder="What you are looking for?" required>
+                            </div>
+                        </form><!-- End # Login Form -->
+                    </div><!-- End # DIV Form -->
+                </div>
+            </div>
+        </div>
+        <!-- END # MODAL LOGIN -->
+
+        <header class="header">
+            <div class="container">
+                <nav class="navbar navbar-default yamm">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="logo-normal">
+                            <a class="navbar-brand" href="{% url 'index' %}"><h2 style="text-decoration: none; color: azure;">CREDIT RISK</h2></a>
+                        </div>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                          
+                            <li><a href="{% url 'about' %}">About</a></li>
+                            
+                            
+                            <li><a href="{% url 'register' %}">Registration</a></li>
+
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            
+                        </ul>
+                    </div>
+                </nav><!-- end navbar -->
+            </div><!-- end container -->
+        </header>
+        <section>
+            <div class="register">
+               
+                <div class="form-container">
+                    <form class="registration-form" action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                      <h2>Login Page</h2>
+                      
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                      </div>
+                      <button type="submit">Register</button>
+                    </form>
+                  </div>
+                
+                </div>
+            </section>
+        <!-- <section id="home" class="video-section js-height-full">
+            <div class="overlay"></div>
+            <div class="home-text-wrapper relative container">
+                <div class="home-message">
+                    <p>Predicting the Risk Level Of Loan</p>
+                    <small>Credit risk prediction in loan applications is a critical aspect of financial stability for both lenders and borrowers, focuses on assessing whether a loan carries potential credit risk or not.</small>
+                    <div class="btn-wrapper">
+                        <div class="text-center">
+                            <a href="#" class="btn btn-primary wow slideInLeft">Registration</a> &nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-default wow slideInRight">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </section>  -->
+    </div>
+    
+    <!-- jQuery Files -->
+    <script>
+		{% if messages %}
+			{% for message in messages %}
+				alert("{{ message }}");
+			{% endfor %}
+		{% endif %}
+  	</script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/carousel.js"></script>
+    <script src="/static/js/animate.js"></script>
+    <script src="/static/js/custom.js"></script>
+    <!-- VIDEO BG PLUGINS -->
+    <script src="/static/js/videobg.js"></script>
+
+</body>
+</html>
